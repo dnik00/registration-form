@@ -1,0 +1,296 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+}
+
+.main-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  /* overflow-y: auto; */
+}
+
+.image-container {
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+  max-height: 100vh;
+}
+
+.responsive-image {
+  /* max-height: 100vh; */
+  object-fit: cover;
+  height: 100%;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 25px 70px;
+  background-color: #fff;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+  /* height: 100vh; */
+}
+
+.title {
+  font-size: 25px;
+  font-weight: 500;
+  position: relative;
+  /* overflow: auto; */
+}
+
+ .title span {
+  position: relative;
+  display: block;
+  font-size: 14px;
+  color: #888;
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+.content form .user-details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 20px 0 12px 0;
+}
+
+form .user-details .input-box {
+  margin-bottom: 10px;
+  width: calc(100% / 2 - 20px);
+}
+
+form .input-box span.details {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 5px;
+  font-size: 0.75em;
+}
+
+.user-details .input-box input {
+  height: 40px;
+  width: 100%;
+  outline: none;
+  font-size: 16px;
+  border-radius: 5px;
+  padding-left: 15px;
+  border: 1px solid #ccc;
+  border-bottom-width: 2px;
+  transition: all 0.3s ease;
+}
+
+.user-details .input-box input:focus,
+.user-details .input-box input:valid {
+  border-color: #9b59b6;
+}
+
+form .user-details .input-box:last-child {
+  margin-bottom: 5px;
+}
+
+.flags {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+}
+
+.flags .left {
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
+}
+
+.flags .left .checkbox {
+  margin-bottom: 3px;
+  font-size: 0.85em;
+}
+
+.flags .right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.flags .link {
+  margin-top: 0;
+  font-size: 0.85em;
+}
+
+form .buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  height: 40px;
+  margin: 20px 0;
+  margin-bottom: 10px;
+}
+
+form .buttons .button {
+  width: calc(100% / 2 - 20px);
+  margin-bottom: 10px;
+}
+
+form .button input {
+  height: 40px;
+  width: 100%;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: #a6b9ce;
+}
+
+form .buttons .button input#createAccountBtn:enabled {
+  background: #007AFF; 
+}
+
+form .buttons .button input[value="Sign-in with Google"] {
+  background-color: #2D3748; 
+}
+
+form .button input:hover {
+  background: #007AFF;
+}
+
+form .account {
+  text-align: center;
+  margin-top: 10px;
+  width: 100%; 
+  margin-top: 20px; 
+  font-size: 0.9em; 
+  padding-bottom: 30px;
+}
+
+small.error {
+  color: red;
+  font-size: 0.75em;
+  display: block;
+  margin-top: 5px;
+}
+
+
+@media (max-width: 1350px) {
+  .image-container {
+    display: none; 
+  }
+
+  .main-container {
+    height: 100%;
+    width: 100%;
+  }
+
+  .form-container {
+    padding: 20px;
+    width: 100%; 
+    height: 100%;
+  }
+
+  .title {
+    font-size: 20px; 
+    width: 100%;
+  }
+
+  .user-details .input-box {
+    width: 100%; 
+  }
+}
+
+
+@media (max-width: 768px) {
+  .form-container {
+    padding: 15px; 
+    width: 100%; 
+    height: 100%; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center;
+  }
+
+  .title {
+    font-size: 15px;
+    text-align: center; 
+    margin-top: 20px;
+  }
+  
+  .title span {
+    display: block;
+    font-size: 0.75em;
+    margin-bottom: 5px;
+    text-align: center; 
+  }
+
+  .content form .user-details {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 0 12px 0;
+  }
+
+  .user-details {
+    display: flex;
+    flex-direction: column; 
+    justify-content: flex-start;
+    width: 100%; 
+  }
+
+  form .user-details .input-box {
+    margin-bottom: 5px;
+    width: 100%;
+  }
+
+  .user-details .input-box {
+    width: 100%; 
+    margin-bottom: 8px;
+    font-size: 10px;
+  }
+
+  .user-details .input-box input {
+    height: 32px; 
+  }
+
+  .flags {
+    flex-direction: column; 
+  }
+
+  form .buttons {
+    display: flex;
+    flex-direction: column; 
+    justify-content: flex-start;
+    width: 100%; 
+    margin-top: 10px; 
+    height: auto;
+  }
+
+  form .buttons .button {
+    width: 100%; 
+    margin-bottom: 10px;
+     
+  }
+
+  form .button input {
+    height: 32px; 
+  }
+
+  .account {
+    font-size: 0.8em; 
+    padding-bottom: 10px;
+  }
+}

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title>Responsive Registration Form</title> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="main-container">
+        <div class="image-container">
+            <img src="Picture.png" alt="Image" class="responsive-image">
+        </div>
+
+        <div class="form-container">
+            <div class="title">
+                <strong>Create account</strong> 
+                <span>For business, band or celebrity</span>
+            </div>
+            
+            <div class="content">
+                <form id="registrationForm" action="#">
+                    <div class="user-details">
+                        <div class="input-box">
+                            <span class="details">First Name</span>
+                            <input type="text" id="firstName" placeholder="Enter first name" required> 
+                            <small class="error" id="firstNameError"></small>
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Last Name</span>
+                            <input type="text" id="lastName" placeholder="Enter last name" required> 
+                            <small class="error" id="lastNameError"></small>
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Email or phone number</span>
+                            <input type="text" id="email" placeholder="Enter email or phone" required> 
+                            <small class="error" id="emailError"></small>
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Date of birth</span>
+                            <input type="date" id="dob" placeholder="Enter your date of birth" required> 
+                            <small class="error" id="dobError"></small>
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Password</span>
+                            <input type="password" id="password" placeholder="Enter password" required> 
+                            <small class="error" id="passwordError"></small>
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Confirm password</span>
+                            <input type="password" id="confirmPassword" placeholder="Confirm password" required> 
+                            <small class="error" id="confirmPasswordError"></small>
+                        </div>
+                    </div> 
+
+                    <div class="flags">
+                        <div class="left">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="subscribe" value="yes">
+                                    Remember me
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="subscribe" value="yes">
+                                    I agree to all the <a href="https://example.com/terms" target="_blank">Terms</a> and <a href="https://example.com/privacy" target="_blank">Privacy</a>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <div class="link">
+                                <a href="your-password-reset-link.html">Forgot your password?</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="buttons">
+                        <div class="button">
+                            <input type="submit" value="Create account" id="createAccountBtn" disabled>
+                        </div>
+                        <div class="button">
+                            <input type="submit" value="Sign-in with Google">
+                        </div>
+                    </div>
+
+                    <div class="account">
+                        <span>Don't have an account? <a href="https://example.com/log-in" target="_blank">Log In</a></span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        const namePattern = /^[A-Za-z]+$/;
+
+        function validateName(input, errorElement) {
+            if (input.value && !namePattern.test(input.value)) {
+                input.style.borderColor = "red";  
+                errorElement.textContent = "Name must contain only Latin letters.";
+                return false;
+            } else {
+                input.style.borderColor = "#ccc"; 
+                errorElement.textContent = "";
+                return true;
+            }
+        }
+
+        function validateEmail(input, errorElement) {
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            if (input.value && !emailPattern.test(input.value)) {
+                input.style.borderColor = "red";
+                errorElement.textContent = "Enter a valid email address.";
+                return false;
+            } else {
+                input.style.borderColor = "#ccc";
+                errorElement.textContent = "";
+                return true;
+            }
+        }
+
+        function validatePassword(input, errorElement) {
+            if (input.value && input.value.length < 6) {
+                input.style.borderColor = "red";
+                errorElement.textContent = "Password must be at least 6 characters.";
+                return false;
+            } else {
+                input.style.borderColor = "#ccc";
+                errorElement.textContent = "";
+                return true;
+            }
+        }
+
+        function validateConfirmPassword(input, errorElement, passwordValue) {
+            if (input.value && input.value !== passwordValue) {
+                input.style.borderColor = "red";
+                errorElement.textContent = "Passwords do not match.";
+                return false;
+            } else {
+                input.style.borderColor = "#ccc";
+                errorElement.textContent = "";
+                return true;
+            }
+        }
+
+        function checkFormValidity() {
+            const firstName = document.getElementById("firstName");
+            const lastName = document.getElementById("lastName");
+            const email = document.getElementById("email");
+            const dob = document.getElementById("dob");
+            const password = document.getElementById("password");
+            const confirmPassword = document.getElementById("confirmPassword");
+
+            const isValid = validateName(firstName, document.getElementById("firstNameError")) &&
+                            validateName(lastName, document.getElementById("lastNameError")) &&
+                            validateEmail(email, document.getElementById("emailError")) &&
+                            validatePassword(password, document.getElementById("passwordError")) &&
+                            validateConfirmPassword(confirmPassword, document.getElementById("confirmPasswordError"), password.value) &&
+                            firstName.value && lastName.value && email.value && dob.value && password.value && confirmPassword.value;
+
+            const createAccountBtn = document.getElementById("createAccountBtn");
+            createAccountBtn.disabled = !isValid;
+        }
+
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('input', checkFormValidity);
+            input.addEventListener('blur', () => checkFormValidity());
+        });
+
+        window.onload = function() {
+            const createAccountBtn = document.getElementById("createAccountBtn");
+            createAccountBtn.disabled = true; 
+            checkFormValidity();  
+        };
+    </script>
+</body>
+</html>
